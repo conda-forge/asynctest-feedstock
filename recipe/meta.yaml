@@ -13,14 +13,14 @@ source:
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
+  script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
     - pip
-    - python >=3.4
+    - python >=3.5
   run:
-    - python >=3.4
+    - python >=3.5
 
 test:
   imports:
@@ -38,3 +38,4 @@ about:
 extra:
   recipe-maintainers:
     - hodgsonw
+    - synapticarbors
