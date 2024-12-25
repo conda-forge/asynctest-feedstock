@@ -1,28 +1,30 @@
 {% set name = "asynctest" %}
 {% set version = "0.13.0" %}
-{% set sha256 = "c27862842d15d83e6a34eb0b2866c323880eb3a75e4485b079ea11748fd77fac" %}
 
 package:
   name: "{{ name|lower }}"
   version: "{{ version }}"
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: "{{ sha256 }}"
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: c27862842d15d83e6a34eb0b2866c323880eb3a75e4485b079ea11748fd77fac
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
     - pip
-    - python >=3.5
+    - setuptools
+    - python {{ python_min }}
   run:
-    - python >=3.5
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - asynctest
 
